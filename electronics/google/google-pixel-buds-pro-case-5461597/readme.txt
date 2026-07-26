@@ -1,0 +1,4 @@
+Google Pixel Buds Pro Case by Rockyjai on Thingiverse: https://www.thingiverse.com/thing:5461597
+
+Summary:
+The coating of the Pixel Buds Pro case makes the case very slippery to hold. I  made a simple protective case for temporary use. I used TPU to print this protective case with fuzzy finishing to provide a better grip. It fits pretty well. There is a mark at the back to indicate the reset button and a hole is made at the front of the case for the indicator light. Of course, there is a hole made for the charging port. The cap shape is too round to fix the case. I did not find a good solution so I stick the cap case with a little blu-tack. 
