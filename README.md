@@ -32,8 +32,7 @@ directory when the model needs dimensions, generation steps, or design context.
 `.png`, `.jpg`, and `.jpeg` files are reference images, render previews, or
 downloaded project images.
 
-`license.txt` and `readme.txt` files come from upstream model sources when they
-exist.
+`license.txt` files come from upstream model sources when they exist.
 
 ## Regenerating OpenSCAD Models
 
@@ -43,12 +42,12 @@ Generate an STL from an OpenSCAD source file:
 openscad -o path/to/model.stl path/to/model.scad
 ```
 
-Example:
+Multiline form:
 
 ```sh
 openscad \
-  -o utility/fan/fan-base-trapezoid-spoke/fan-base-trapezoid-spoke.stl \
-  utility/fan/fan-base-trapezoid-spoke/fan-base-trapezoid-spoke.scad
+  -o category/brand/project/model.stl \
+  category/brand/project/model.scad
 ```
 
 Flatpak OpenSCAD works too:
@@ -59,11 +58,6 @@ flatpak run org.openscad.OpenSCAD \
   -o path/to/model.stl \
   path/to/model.scad
 ```
-
-## Project Notes
-
-`utility/fan/fan-base-trapezoid-spoke/readme.md` documents the trapezoid spoke
-dimensions and the exact STL generation command for that model.
 
 ## Licenses
 
