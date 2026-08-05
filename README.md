@@ -12,6 +12,7 @@ automotive/
   opel/
 coffee/
   1zpresso/
+  pour-over-filter-holder/
 electronics/
   google/
 toys/
