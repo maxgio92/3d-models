@@ -110,10 +110,10 @@ module front_lip() {
 }
 
 module back_wall() {
-  back_cutout_width = 8;
+  back_cutout_width = 6;
+  back_cutout_count = 9;
+  back_cutout_spacing = filter_width / (back_cutout_count + 1);
   back_cutout_bottom_z = base_thickness - 1;
-  back_cutout_top_margin = 14;
-  back_cutout_height = back_wall_height - back_cutout_top_margin - back_cutout_bottom_z;
 
   difference() {
     union() {
@@ -132,20 +132,26 @@ module back_wall() {
         ]);
     }
 
-    translate([
-      (outer_width - back_cutout_width) / 2,
-      back_y - 1,
-      back_cutout_bottom_z
-    ])
-      cube([back_cutout_width, back_wall_thickness + 2, back_cutout_height]);
+    for (i = [0 : back_cutout_count - 1]) {
+      top_margin = (i % 2 == 0) ? 14 : 26;
+      cutout_height = back_wall_height - top_margin - back_cutout_bottom_z;
+      cutout_center_x = wall_thickness + back_cutout_spacing * (i + 1);
 
-    translate([
-      outer_width / 2,
-      back_y - 1,
-      back_wall_height - back_cutout_top_margin
-    ])
-      rotate([-90, 0, 0])
-        cylinder(h=back_wall_thickness + 2, r=3);
+      translate([
+        cutout_center_x - back_cutout_width / 2,
+        back_y - 1,
+        back_cutout_bottom_z
+      ])
+        cube([back_cutout_width, back_wall_thickness + 2, cutout_height]);
+
+      translate([
+        cutout_center_x,
+        back_y - 1,
+        back_wall_height - top_margin
+      ])
+        rotate([-90, 0, 0])
+          cylinder(h=back_wall_thickness + 2, r=back_cutout_width / 2);
+    }
   }
 }
 
