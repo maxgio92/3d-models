@@ -5,10 +5,12 @@ bumper_cut_diameter = 66;
 opening_diameter = 60.5;
 outer_diameter = 86;
 outer_flange_thickness = 3;
-front_ring_y_thickness = 2.5;
-front_limb_depth = 16;
+front_ring_shell_thickness = 2.5;
+front_limb_depth = 10;
+front_limb_tip_extra_depth = 8;
+front_limb_tip_height = 10;
 center_limb_depth = 0.2;
-front_limb_curve_power = 1.65;
+front_limb_curve_power = 2.4;
 front_limb_segments = 432;
 
 rear_collar_outer_diameter = 65.5;
@@ -47,7 +49,16 @@ function vertical_limb_progress(z) =
     pow(eased, front_limb_curve_power);
 
 function front_depth_at_z(z) =
-  center_limb_depth + (front_limb_depth - center_limb_depth) * vertical_limb_progress(z);
+  let (
+    outer_radius = outer_diameter / 2,
+    abs_z = z < 0 ? abs(z) : 0,
+    tip_start = outer_radius - front_limb_tip_height,
+    tip_u = abs_z <= tip_start ? 0 : min(1, (abs_z - tip_start) / front_limb_tip_height),
+    tip_progress = tip_u * tip_u * (3 - 2 * tip_u)
+  )
+    center_limb_depth
+      + (front_limb_depth - center_limb_depth) * vertical_limb_progress(z)
+      + front_limb_tip_extra_depth * tip_progress;
 
 function profiled_y_at_z(z, scale) =
   front_body_back_y + (front_depth_at_z(z) - front_body_back_y) * scale;
@@ -76,8 +87,8 @@ module progressive_front_body() {
           middle_front_y = profiled_y_at_z(middle_z, middle_ring_profile_scale),
           outer_front_y = profiled_y_at_z(outer_z, 1),
           inner_front_y = profiled_y_at_z(front_inner_z, 1),
-          outer_front_back_y = outer_front_y - front_ring_y_thickness,
-          inner_front_back_y = inner_front_y - front_ring_y_thickness,
+          outer_front_back_y = outer_front_y - front_ring_shell_thickness,
+          inner_front_back_y = inner_front_y - front_ring_shell_thickness,
           inner_back_y = profiled_y_at_z(rear_inner_z, 0)
         )
         each [

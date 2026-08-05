@@ -19,7 +19,7 @@ The assembly STL is only for previewing the layout. Print the cover and tabs as 
 
 - Cover outer diameter: `86 mm`
 - Visible opening: `60.5 mm`
-- Max front protrusion: `16 mm`
+- Max front protrusion: `10 mm`
 - Rear collar: `65.5 x 22 mm`
 - Tab length: `18 mm`
 - Tab width: `8 mm`
