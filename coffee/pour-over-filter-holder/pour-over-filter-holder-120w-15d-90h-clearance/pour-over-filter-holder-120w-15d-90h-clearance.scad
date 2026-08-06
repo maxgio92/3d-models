@@ -434,6 +434,8 @@ module front_lip() {
   door_incision_height = door_height + 4;
   blind_arch_width = 8;
   blind_arch_height = 30;
+  tower_lancet_width = 13;
+  tower_lancet_height = 62;
   rose_center_z = base_thickness + 74;
   rose_hole_radius = 4.5;
   rose_outer_radius = 10;
@@ -579,6 +581,22 @@ module front_lip() {
           incision_depth,
           blind_arch_height,
           incision_line_width
+        );
+
+    for (x_pos = [
+      wall_thickness + filter_width * 0.24,
+      wall_thickness + filter_width * 0.76
+    ])
+      translate([
+        x_pos - tower_lancet_width / 2,
+        front_y - 0.1,
+        base_thickness + 12
+      ])
+        nested_gothic_window_y(
+          [7, 10, tower_lancet_width],
+          incision_depth,
+          tower_lancet_height,
+          0.8
         );
   }
 }
