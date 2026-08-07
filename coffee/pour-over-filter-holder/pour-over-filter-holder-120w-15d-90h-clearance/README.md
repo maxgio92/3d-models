@@ -37,6 +37,8 @@ Design details:
   pinnacles, roof ribs, shallow lancet incisions, denser diagonal roof grooves,
   diamond roof panels, and sharp spires along the ridge, roof side edges, and
   sloped lateral roof planes.
+- Lid includes an internal stop lip at the 18 mm skirt depth so it seats
+  consistently while preserving 45 mm of clearance above the holder top.
 - Sloped roof faces include raised sword-like gothic columns.
 - Rectangular lid walls include raised sword-like gothic columns on all four sides.
 - Long rectangular lid walls include thin raised exterior supports parallel to the roof ridge.

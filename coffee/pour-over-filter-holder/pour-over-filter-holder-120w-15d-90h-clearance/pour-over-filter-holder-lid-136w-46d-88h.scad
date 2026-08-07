@@ -21,6 +21,23 @@ total_height = roof_peak_z + finial_height;
 
 $fn = 32;
 
+module internal_stop_lip() {
+  stop_depth = 3;
+  stop_height = 2;
+
+  translate([wall_thickness, wall_thickness, skirt_height])
+    cube([inner_width, stop_depth, stop_height]);
+
+  translate([wall_thickness, outer_depth - wall_thickness - stop_depth, skirt_height])
+    cube([inner_width, stop_depth, stop_height]);
+
+  translate([wall_thickness, wall_thickness + stop_depth, skirt_height])
+    cube([stop_depth, inner_depth - 2 * stop_depth, stop_height]);
+
+  translate([outer_width - wall_thickness - stop_depth, wall_thickness + stop_depth, skirt_height])
+    cube([stop_depth, inner_depth - 2 * stop_depth, stop_height]);
+}
+
 module wall_shell() {
   translate([0, 0, 0])
     cube([outer_width, wall_thickness, roof_base_z + overlap]);
@@ -479,6 +496,7 @@ module roof_incisions() {
 difference() {
   union() {
     wall_shell();
+    internal_stop_lip();
     gabled_roof();
     eaves();
     ridge_cap();
