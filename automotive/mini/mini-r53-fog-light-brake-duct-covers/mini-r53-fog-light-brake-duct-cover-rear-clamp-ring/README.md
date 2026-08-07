@@ -2,7 +2,7 @@
 
 Variant using a hidden rear clamp ring to fix the cover to the bumper instead of the brake duct.
 
-The visible cover keeps the same front mouth profile as the current draft. The cover body has no rear bosses outside the `65.5 mm` through-bumper collar, so it can pass through the `66 mm` bumper hole. A separate rear ring sits behind the bumper around the collar and is rear-installed.
+The visible cover keeps the same smoothed front mouth profile as the current draft. The cover body has no rear bosses outside the `65.5 mm` through-bumper collar, so it can pass through the `66 mm` bumper hole. A separate rear ring sits behind the bumper around the collar and is rear-installed.
 
 ## Parts
 
@@ -16,8 +16,12 @@ The assembly STL is only for previewing the layout. Print the cover and clamp ri
 ## Draft Dimensions
 
 - Cover outer diameter: `86 mm`
-- Visible opening: `60.5 mm`
-- Max front protrusion: `10 mm`
+- Front bellmouth: `72 mm`
+- Front edge-only lip flare: `80 mm` across the final `10 mm`
+- Rear throat: `60.5 mm`
+- Internal intake shape: eased circular bellmouth
+- Bellmouth progression: `24` smootherstep sections plus `18` edge-flare sections
+- Max front protrusion: `13 mm` at the bottom tip
 - Rear collar: `65.5 x 22 mm`
 - Clamp ring outer diameter: `86 mm`
 - Clamp ring inner diameter: `66 mm`

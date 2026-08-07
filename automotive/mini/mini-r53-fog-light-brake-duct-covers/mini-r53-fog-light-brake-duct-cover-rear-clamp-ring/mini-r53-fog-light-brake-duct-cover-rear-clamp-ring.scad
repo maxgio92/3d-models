@@ -3,11 +3,13 @@ component = "assembly"; // "assembly", "cover", or "clamp-ring"
 
 bumper_cut_diameter = 66;
 opening_diameter = 60.5;
+intake_mouth_diameter = 72;
+front_edge_mouth_diameter = 80;
 outer_diameter = 86;
 outer_flange_thickness = 3;
 front_ring_shell_thickness = 2.5;
 front_limb_depth = 10;
-front_limb_tip_extra_depth = 8;
+front_limb_tip_extra_depth = 3;
 front_limb_tip_height = 10;
 center_limb_depth = 0.2;
 front_limb_curve_power = 2.4;
@@ -67,9 +69,9 @@ function ring_vertex_index(segment, point) = segment * 7 + point;
 
 module progressive_front_body() {
   outer_radius = outer_diameter / 2;
-  middle_radius = seal_lip_outer_diameter / 2;
+  middle_radius = max(seal_lip_outer_diameter, intake_mouth_diameter) / 2;
   rear_join_radius = rear_collar_outer_diameter / 2;
-  front_inner_radius = opening_diameter / 2;
+  front_inner_radius = intake_mouth_diameter / 2;
   rear_inner_radius = (rear_collar_outer_diameter - 2 * rear_collar_wall) / 2;
 
   polyhedron(
@@ -132,6 +134,57 @@ module circular_tube(outer_diameter, depth, wall) {
     }
 }
 
+module smooth_intake_cut() {
+  rear_y = front_body_back_y - rear_collar_depth - 1;
+  front_y = front_limb_depth + front_limb_tip_extra_depth + 1;
+  bellmouth_start_y = front_body_back_y + 1;
+  edge_flare_start_y = front_y - 10;
+  sections = 24;
+  edge_sections = 18;
+
+  function smooth_progress(t) =
+    t * t * t * (t * (t * 6 - 15) + 10);
+
+  function bellmouth_y(i) =
+    bellmouth_start_y + (edge_flare_start_y - bellmouth_start_y) * i / sections;
+
+  function bellmouth_diameter(i) =
+    opening_diameter
+      + (intake_mouth_diameter - opening_diameter)
+        * smooth_progress(i / sections);
+
+  function edge_flare_y(i) =
+    edge_flare_start_y + (front_y - edge_flare_start_y) * i / edge_sections;
+
+  function edge_flare_diameter(i) =
+    intake_mouth_diameter
+      + (front_edge_mouth_diameter - intake_mouth_diameter)
+        * smooth_progress(i / edge_sections);
+
+  module circular_slice(y_pos, diameter) {
+    translate([0, y_pos, 0])
+      rotate([-90, 0, 0])
+        cylinder(h = 0.4, d = diameter);
+  }
+
+  hull() {
+    circular_slice(rear_y - 0.1, opening_diameter);
+    circular_slice(bellmouth_start_y + 0.1, opening_diameter);
+  }
+
+  for (i = [0:sections - 1])
+    hull() {
+      circular_slice(bellmouth_y(i) - 0.1, bellmouth_diameter(i));
+      circular_slice(bellmouth_y(i + 1) + 0.1, bellmouth_diameter(i + 1));
+    }
+
+  for (i = [0:edge_sections - 1])
+    hull() {
+      circular_slice(edge_flare_y(i) - 0.1, edge_flare_diameter(i));
+      circular_slice(edge_flare_y(i + 1) + 0.1, edge_flare_diameter(i + 1));
+    }
+}
+
 module clamp_screw_positions() {
   for (angle = clamp_screw_angles)
     translate([
@@ -168,12 +221,7 @@ module duct_cover(side_sign = 1) {
           circular_tube(rear_collar_outer_diameter, rear_collar_depth, rear_collar_wall);
     }
 
-    translate([0, -outer_flange_thickness - seal_lip_depth - connector_shoulder_depth - rear_collar_depth - 1, 0])
-      rotate([-90, 0, 0])
-        cylinder(
-          h = front_limb_depth + outer_flange_thickness + seal_lip_depth + connector_shoulder_depth + rear_collar_depth + 3,
-          d = opening_diameter
-        );
+    smooth_intake_cut();
   }
 }
 
