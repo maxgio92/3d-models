@@ -4,6 +4,9 @@ Variant using hidden rear rotating tabs to fix the cover to the bumper instead o
 
 The visible cover keeps the same smoothed front mouth profile as the current draft. The cover body has no rear bosses outside the `65.5 mm` through-bumper collar, so it can pass through the `66 mm` bumper hole. Separate small tabs sit behind the bumper and can rotate around their screws to clamp the bumper edge.
 
+The outer transition curve is tuned inward to reduce the shoulder without
+adding material or changing fit-critical diameters.
+
 This draft assumes access behind the bumper. A rigid rotating tab that is larger than the circular bumper hole cannot be inserted from the front through the same round hole and then catch behind it.
 
 ## Parts
@@ -23,7 +26,7 @@ The assembly STL is only for previewing the layout. Print the cover and tabs as 
 - Rear throat: `60.5 mm`
 - Internal intake shape: eased circular bellmouth
 - Bellmouth progression: `24` smootherstep sections plus `18` edge-flare sections
-- Max front protrusion: `13 mm` at the bottom tip
+- Max front protrusion: `10 mm`
 - Rear collar: `65.5 x 22 mm`
 - Tab length: `18 mm`
 - Tab width: `8 mm`

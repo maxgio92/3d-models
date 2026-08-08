@@ -1,8 +1,11 @@
 # MINI R53 Fog Light Brake Duct Cover - Rear Clamp Ring
 
-Variant using a hidden rear clamp ring to fix the cover to the bumper instead of the brake duct.
+Variant using a hidden rear retainer sleeve to fix the cover to the bumper instead of the brake duct.
 
-The visible cover keeps the same smoothed front mouth profile as the current draft. The cover body has no rear bosses outside the `65.5 mm` through-bumper collar, so it can pass through the `66 mm` bumper hole. A separate rear ring sits behind the bumper around the collar and is rear-installed.
+The visible cover keeps the same smoothed front mouth profile as the current draft. The cover body has no rear bosses outside the `65.5 mm` through-bumper collar, so it can pass through the `66 mm` bumper hole. A separate rear sleeve sits behind the bumper and grips the outside of the rear collar, giving the screws a rear-side retaining part that prevents the cover from pulling back out.
+
+The outer transition curve is tuned inward to reduce the shoulder without
+adding material or changing fit-critical diameters.
 
 ## Parts
 
@@ -11,7 +14,7 @@ The visible cover keeps the same smoothed front mouth profile as the current dra
 - `mini-r53-fog-light-brake-duct-cover-rear-clamp-ring.stl`
 - `mini-r53-fog-light-brake-duct-cover-rear-clamp-ring-assembly.stl`
 
-The assembly STL is only for previewing the layout. Print the cover and clamp ring as separate parts.
+The assembly STL is only for previewing the layout. Print the cover and rear retainer sleeve as separate parts.
 
 ## Draft Dimensions
 
@@ -21,12 +24,16 @@ The assembly STL is only for previewing the layout. Print the cover and clamp ri
 - Rear throat: `60.5 mm`
 - Internal intake shape: eased circular bellmouth
 - Bellmouth progression: `24` smootherstep sections plus `18` edge-flare sections
-- Max front protrusion: `13 mm` at the bottom tip
+- Max front protrusion: `10 mm`
 - Rear collar: `65.5 x 22 mm`
-- Clamp ring outer diameter: `86 mm`
-- Clamp ring inner diameter: `66 mm`
-- Clamp ring thickness: `3 mm`
-- Clamp ring screw clearance: `2.6 mm`
+- Retainer sleeve outer diameter: `82 mm`
+- Retainer flange outer diameter: `86 mm`
+- Retainer bore: `66.5 mm` for clearance over the `65.5 mm` cover collar
+- Retainer sleeve depth: `12 mm`
+- Retainer flange thickness: `3 mm`
+- Retainer side screw clearance: `3.2 mm`
+- Retainer side screw center: midway through the `12 mm` sleeve wall
+- Retainer side holes: `4`, intended as drill guides for fitment-dependent cover holes
 - Assumed bumper thickness: `3 mm`
 
 ## Generate

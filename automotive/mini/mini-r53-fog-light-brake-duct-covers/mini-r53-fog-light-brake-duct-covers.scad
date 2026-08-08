@@ -8,10 +8,10 @@ outer_diameter = 86;
 outer_flange_thickness = 3;
 front_ring_shell_thickness = 2.5;
 front_limb_depth = 10;
-front_limb_tip_extra_depth = 3;
+front_limb_tip_extra_depth = 0;
 front_limb_tip_height = 10;
 center_limb_depth = 0.2;
-front_limb_curve_power = 2.4;
+front_limb_curve_power = 3.6;
 front_limb_segments = 432;
 
 rear_collar_outer_diameter = 65.5;

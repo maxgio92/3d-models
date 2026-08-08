@@ -11,7 +11,9 @@ The cover is designed as an exterior bumper bezel with a rear round collar:
   a smoother `80 mm` edge-only lip flare across the final `10 mm` of the front ring;
 - the `60.5 mm` throat stays straight through the rear section before the
   bellmouth begins;
-- the front ring follows a steeper Z-based curve from near-flat through the center band to `10 mm`, with an extra `3 mm` only in the last `10 mm` of the bottom limb;
+- the front ring follows a steeper Z-based curve from near-flat through the center band to `10 mm`, with symmetric top and bottom limb protrusion;
+- the outer transition curve is tuned inward to reduce the shoulder without
+  adding material or changing fit-critical diameters;
 - the front ring keeps a constant `2.5 mm` shell thickness so the top/bottom limbs do not become thicker;
 - the center opening reads as a progressive circular bellmouth to reduce sharp intake transitions;
 - the bellmouth uses higher-resolution smootherstep sections for a softer internal-to-external radius progression;
@@ -31,13 +33,12 @@ The cover is designed as an exterior bumper bezel with a rear round collar:
 - Duct reference: `80 mm` external, `75 mm` internal
 - Outer flange: `86 x 3 mm`
 - Top/bottom exterior limb depth: `10 mm`
-- Bottom tip extra depth: `3 mm`
-- Bottom tip max depth: `13 mm`
-- Bottom tip band height: `10 mm`
+- Bottom tip extra depth: `0 mm`
+- Top/bottom max depth: `10 mm`
 - Center-band front depth: `0.2 mm`
 - Front ring shell thickness: `2.5 mm`
 - Front contour segments: `432`
-- Front limb curve power: `2.4`
+- Front limb curve power: `3.6`
 - Middle ring profile scale: `45%`
 - Front bellmouth: `72 mm`
 - Front edge-only lip flare: `80 mm` across the final `10 mm`

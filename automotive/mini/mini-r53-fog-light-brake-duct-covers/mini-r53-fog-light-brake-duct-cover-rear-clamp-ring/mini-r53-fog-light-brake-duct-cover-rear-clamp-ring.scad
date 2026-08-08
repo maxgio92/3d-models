@@ -9,10 +9,10 @@ outer_diameter = 86;
 outer_flange_thickness = 3;
 front_ring_shell_thickness = 2.5;
 front_limb_depth = 10;
-front_limb_tip_extra_depth = 3;
+front_limb_tip_extra_depth = 0;
 front_limb_tip_height = 10;
 center_limb_depth = 0.2;
-front_limb_curve_power = 2.4;
+front_limb_curve_power = 3.6;
 front_limb_segments = 432;
 
 rear_collar_outer_diameter = 65.5;
@@ -27,11 +27,18 @@ front_body_back_y = -outer_flange_thickness - seal_lip_depth - connector_shoulde
 middle_ring_profile_scale = 0.45;
 
 bumper_thickness = 3;
-clamp_ring_thickness = 3;
-clamp_ring_outer_diameter = 86;
-clamp_ring_inner_diameter = 66;
-clamp_screw_radius = 39;
-clamp_screw_clearance = 2.6;
+clamp_ring_thickness = 12;
+clamp_ring_flange_thickness = 3;
+clamp_ring_outer_diameter = 82;
+clamp_ring_flange_outer_diameter = 86;
+clamp_ring_inner_diameter = 66.5;
+clamp_screw_clearance = 3.2;
+clamp_screw_side_radius = (clamp_ring_outer_diameter + clamp_ring_inner_diameter) / 4;
+clamp_screw_side_y =
+  -clamp_ring_flange_thickness
+  - (clamp_ring_thickness - clamp_ring_flange_thickness) / 2;
+clamp_screw_side_length =
+  (clamp_ring_outer_diameter - clamp_ring_inner_diameter) / 2 + 2;
 clamp_screw_angles = [
   35,
   145,
@@ -185,29 +192,37 @@ module smooth_intake_cut() {
     }
 }
 
-module clamp_screw_positions() {
+module radial_screw_holes() {
   for (angle = clamp_screw_angles)
     translate([
-      clamp_screw_radius * cos(angle),
-      0,
-      clamp_screw_radius * sin(angle)
+      clamp_screw_side_radius * cos(angle),
+      clamp_screw_side_y,
+      clamp_screw_side_radius * sin(angle)
     ])
-      children();
+      rotate([0, 90 - angle, 0])
+        cylinder(h = clamp_screw_side_length, d = clamp_screw_clearance, center = true);
 }
 
 module rear_clamp_ring() {
   difference() {
-    rotate([90, 0, 0])
-      linear_extrude(clamp_ring_thickness)
-        difference() {
-          circle(d = clamp_ring_outer_diameter);
-          circle(d = clamp_ring_inner_diameter);
-        }
+    union() {
+      translate([0, -clamp_ring_flange_thickness + 0.1, 0])
+        rotate([90, 0, 0])
+          linear_extrude(clamp_ring_thickness - clamp_ring_flange_thickness + 0.1)
+            difference() {
+              circle(d = clamp_ring_outer_diameter);
+              circle(d = clamp_ring_inner_diameter);
+            }
 
-    clamp_screw_positions()
-      translate([0, -clamp_ring_thickness - 0.1, 0])
-        rotate([-90, 0, 0])
-          cylinder(h = clamp_ring_thickness + 0.2, d = clamp_screw_clearance);
+      rotate([90, 0, 0])
+        linear_extrude(clamp_ring_flange_thickness)
+          difference() {
+            circle(d = clamp_ring_flange_outer_diameter);
+            circle(d = clamp_ring_inner_diameter);
+          }
+    }
+
+    radial_screw_holes();
   }
 }
 
@@ -244,6 +259,6 @@ if (component == "cover") {
   rear_clamp_ring();
 } else {
   selected_cover();
-  translate([0, front_body_back_y - bumper_thickness - 4, 0])
+  translate([0, front_body_back_y - bumper_thickness, 0])
     rear_clamp_ring();
 }
